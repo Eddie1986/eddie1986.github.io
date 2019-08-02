@@ -62,6 +62,149 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-sshkey" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/08/03/sshkey/" class="article-date">
+  <time datetime="2019-08-02T16:14:41.000Z" itemprop="datePublished">2019-08-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/08/03/sshkey/">一台电脑多个 sshkey</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h3><ul>
+<li>gitbash</li>
+<li>编辑器任意</li>
+</ul>
+<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><ol>
+<li>生成 gitee 用的</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh-keygen -t rsa -C <span class="string">'xxxxx@company.com'</span> -f ~/.ssh/gitee_id_rsa</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>生成 github 用的</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh-keygen -t rsa -C <span class="string">'xxxxx@company.com'</span> -f ~/.ssh/id_rsa</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>在~/.ssh 目录新建 config 文件，添加内容：</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Host github.com</span><br><span class="line">    Hostname github.com</span><br><span class="line">    IdentityFile ~/.ssh/id_rsa</span><br><span class="line">    PreferredAuthentications publickey</span><br><span class="line"></span><br><span class="line"># gitee</span><br><span class="line">    Host gitee.com</span><br><span class="line">    HostName gitee.com</span><br><span class="line">    PreferredAuthentications publickey</span><br><span class="line">    IdentityFile ~/.ssh/gitee_id_rsa</span><br></pre></td></tr></table></figure>
+
+<p>Host 是别名，HostName 是服务器域名，IdentityFile 指定私钥路径</p>
+<ol start="4">
+<li>用 ssh 命令测试</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ ssh -T git@gitee.com</span><br><span class="line">$ ssh -T git@github.com</span><br></pre></td></tr></table></figure>
+
+<p>成功返回</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hi 不羁! You&apos;ve successfully authenticated, but GITEE.COM does not provide shell access.</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hi fujingqi2018! You&apos;ve successfully authenticated, but GitHub does not provide shell access.</span><br></pre></td></tr></table></figure>
+
+<h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a><a href="https://gitee.com/help/articles/4229#article-header1" title="非常感谢" target="_blank" rel="noopener">参考</a></h4>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/08/03/sshkey/" data-id="cjyub7wyd00079gxvd337ubft" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-auto-deploy" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/08/03/auto-deploy/" class="article-date">
+  <time datetime="2019-08-02T16:12:30.000Z" itemprop="datePublished">2019-08-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/08/03/auto-deploy/">github 自动部署详细流程</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="github-自动部署详细流程"><a href="#github-自动部署详细流程" class="headerlink" title="github 自动部署详细流程"></a>github 自动部署详细流程</h2><p><em>奋战一段时间终于搞好了，记录下来方便后期使用</em></p>
+<h3 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h3><ul>
+<li><p>git</p>
+</li>
+<li><p>github</p>
+</li>
+<li><p>阿里云云服务器 ECS</p>
+</li>
+<li><p>宝塔 linux</p>
+</li>
+</ul>
+<h3 id="实现过程"><a href="#实现过程" class="headerlink" title="实现过程"></a>实现过程</h3><ol>
+<li><p>github 建仓库</p>
+</li>
+<li><p>git clone 仓库到本地</p>
+</li>
+<li><p>添加 webhook.php 文件到本地卡并推送到 github 仓库,github 设置 webhook</p>
+<p>webhook.php 代码：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">// GitHub Webhook Secret.</span></span><br><span class="line"><span class="comment">// GitHub项目 Settings/Webhooks 中的 Secret</span></span><br><span class="line">$secret = <span class="string">"fujingqi"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Path to your respostory on your server.</span></span><br><span class="line"><span class="comment">// e.g. "/var/www/respostory"</span></span><br><span class="line"><span class="comment">// 项目地址</span></span><br><span class="line">$path = <span class="string">"/www/wwwroot/auto.xasmartliving.com"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Headers deliveried from GitHub</span></span><br><span class="line">$signature = $_SERVER[<span class="string">'HTTP_X_HUB_SIGNATURE'</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> ($signature) &#123;</span><br><span class="line">  $hash = <span class="string">"sha1="</span>.hash_hmac(<span class="string">'sha1'</span>, file_get_contents(<span class="string">"php://input"</span>), $secret);</span><br><span class="line">  <span class="keyword">if</span> (strcmp($signature, $hash) == <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">echo</span> shell_exec(<span class="string">"cd &#123;$path&#125; &amp;&amp; /usr/bin/git reset --hard origin/master &amp;&amp; /usr/bin/git clean -f &amp;&amp; /usr/bin/git pull 2&gt;&amp;1"</span>);</span><br><span class="line">    <span class="keyword">exit</span>();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">http_response_code(<span class="number">404</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>4) 创建站点</p>
+<p>   开启<code>shell_exec</code></p>
+<ol start="5">
+<li><p>登录服务器使用 https 协议 clone 项目代码</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ssh root@auto.xxxx.com -p 22</span><br><span class="line"></span><br><span class="line">git <span class="built_in">clone</span> https://github.com/fujingqi2018/auto.git auto.xxxx.com</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>6) 修改权限</p>
+   <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chown -R www .</span><br><span class="line">chmod -R g+s .</span><br></pre></td></tr></table></figure>
+
+<h3 id="接下来就可以愉快的玩耍了"><a href="#接下来就可以愉快的玩耍了" class="headerlink" title="接下来就可以愉快的玩耍了"></a>接下来就可以愉快的玩耍了</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit -m <span class="string">"xxx"</span></span><br><span class="line">git push</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="感谢"><a href="#感谢" class="headerlink" title="感谢"></a>感谢</h3><p>向军大叔的视频教程及<a href="http://houdunren.gitee.io/note/git/git.html#%E5%AE%89%E8%A3%85" target="_blank" rel="noopener">文档教程</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/08/03/auto-deploy/" data-id="cjyub7wy400029gxvryww0tsv" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/github/">github</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-hello-git" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/08/01/hello-git/" class="article-date">
@@ -89,7 +232,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/08/01/hello-git/" data-id="cjysnujek00041wxv4ta77kjn" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/08/01/hello-git/" data-id="cjyub7wyb00069gxvcuplj0n0" class="article-share-link">Share</a>
       
       
     </footer>
@@ -166,7 +309,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/31/happy-day/" data-id="cjysnujei00031wxv09cqynm5" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/07/31/happy-day/" data-id="cjyub7wya00059gxvt2scehbm" class="article-share-link">Share</a>
       
       
     </footer>
@@ -204,7 +347,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/31/markdown试写/" data-id="cjysnuje900001wxvtzef66y9" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/07/31/markdown试写/" data-id="cjyub7wxy00009gxvcjqozh4j" class="article-share-link">Share</a>
       
       
     </footer>
@@ -241,7 +384,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/30/first-blog/" data-id="cjysnujeh00021wxvqw8zjq3r" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/07/30/first-blog/" data-id="cjyub7wy300019gxvmekwq9w0" class="article-share-link">Share</a>
       
       
     </footer>
@@ -290,7 +433,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/30/hello-world/" data-id="cjysnujee00011wxvwbj0j1u7" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/07/30/hello-world/" data-id="cjyub7wy600039gxvv3xu6x5s" class="article-share-link">Share</a>
       
       
     </footer>
@@ -310,9 +453,23 @@
 
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a></li></ul>
+    </div>
+  </div>
+
 
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/github/" style="font-size: 10px;">github</a>
+    </div>
+  </div>
+
   
     
   <div class="widget-wrap">
@@ -331,6 +488,14 @@
       <ul>
         
           <li>
+            <a href="/2019/08/03/sshkey/">一台电脑多个 sshkey</a>
+          </li>
+        
+          <li>
+            <a href="/2019/08/03/auto-deploy/">github 自动部署详细流程</a>
+          </li>
+        
+          <li>
             <a href="/2019/08/01/hello-git/">hello git</a>
           </li>
         
@@ -340,14 +505,6 @@
         
           <li>
             <a href="/2019/07/31/markdown试写/">markdown试写</a>
-          </li>
-        
-          <li>
-            <a href="/2019/07/30/first-blog/">first blog</a>
-          </li>
-        
-          <li>
-            <a href="/2019/07/30/hello-world/">Hello World</a>
           </li>
         
       </ul>
