@@ -231,6 +231,145 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/09/gitee-auto/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Eddie">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="仗键江湖">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/08/09/gitee-auto/" itemprop="url">gitee 实现自动部署</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-08-09T22:56:31+08:00">
+                2019-08-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>github 在国外，之前那个自动部署，是可以用，但是经常超时，然后需要自己登到服务器上去<code>git pull</code></p>
+<p>在网上找了很多 gitee 的自动部署方法，抱歉参考的到底是哪个已经找不到了，就把我自己的流程记下来方便以后使用</p>
+<hr>
+<ol>
+<li><p>自己家的本地库与远程仓库建立联系</p>
+</li>
+<li><p>添加 webhook.php 文件到本地库，且推送到远程仓库</p>
+</li>
+</ol>
+<p>webhook.php 代码：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 本地仓库路径</span></span><br><span class="line">$local = <span class="string">'/www/wwwroot/pull.xasmartliving.com'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 安全验证字符串，为空则不验证</span></span><br><span class="line">$token = <span class="string">''</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 如果启用验证，并且验证失败，返回错误</span></span><br><span class="line">$httpToken = <span class="keyword">isset</span>($_SERVER[<span class="string">'HTTP_X_GITLAB_TOKEN'</span>]) ? $_SERVER[<span class="string">'HTTP_X_GITLAB_TOKEN'</span>] : <span class="string">''</span>;</span><br><span class="line"><span class="keyword">if</span> ($token &amp;&amp; $httpToken != $token) &#123;</span><br><span class="line">    header(<span class="string">'HTTP/1.1 403 Permission Denied'</span>);</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">'Permission denied.'</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 如果仓库目录不存在，返回错误</span></span><br><span class="line"><span class="keyword">if</span> (!is_dir($local)) &#123;</span><br><span class="line">    header(<span class="string">'HTTP/1.1 500 Internal Server Error'</span>);</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">'Local directory is missing'</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//如果请求体内容为空，返回错误</span></span><br><span class="line">$payload = file_get_contents(<span class="string">'php://input'</span>);</span><br><span class="line"><span class="keyword">if</span> (!$payload) &#123;</span><br><span class="line">    header(<span class="string">'HTTP/1.1 400 Bad Request'</span>);</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">'HTTP HEADER or POST is missing.'</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> *第一次 git clone 后</span></span><br><span class="line"><span class="comment"> * 服务器需要修改权限</span></span><br><span class="line"><span class="comment"> * chown -R www .</span></span><br><span class="line"><span class="comment"> * chmod -R g+s .</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">echo</span> shell_exec(<span class="string">"cd &#123;$local&#125; &amp;&amp; git pull 2&gt;&amp;1"</span>);</span><br><span class="line"><span class="keyword">die</span>(<span class="string">"done "</span> . date(<span class="string">'Y-m-d H:i:s'</span>, time()));</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li><p>远程仓库添加 webhook<br><img src="http://www.xasmartliving.cn/fujingqi/giteewebhook.jpg" alt></p>
+</li>
+<li><p>登录服务器 git clone 并修改权限</p>
+</li>
+</ol>
+<p><code>git clone https://gitee.com/fujingqi/pull.git pull.xasmartliving.com</code></p>
+<p><code>cd pull.xasmartliving.com</code><br><code>chown -R www .</code><br><code>chmod -R g+s .</code></p>
+<h3 id="done"><a href="#done" class="headerlink" title="done"></a>done</h3>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/06/some-command/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1464,7 +1603,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
