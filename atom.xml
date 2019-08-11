@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-08-10T15:29:17.850Z</updated>
+  <updated>2019-08-11T12:07:17.857Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>开始vue项目coding</title>
+    <link href="http://yoursite.com/2019/08/11/coding-vue-start/"/>
+    <id>http://yoursite.com/2019/08/11/coding-vue-start/</id>
+    <published>2019-08-11T12:02:39.000Z</published>
+    <updated>2019-08-11T12:07:17.857Z</updated>
+    
+    <content type="html"><![CDATA[<p>奋战撸视频，基本有心得，动手做吧</p><p><a href="http://testvue.xasmartliving" title="let&#39;s have fun" target="_blank" rel="noopener">演示地址</a></p><hr><p>2019-8-11 20:07:13</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;奋战撸视频，基本有心得，动手做吧&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://testvue.xasmartliving&quot; title=&quot;let&amp;#39;s have fun&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;演示地址&lt;/a&gt;&lt;/p&gt;
+&lt;hr
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>linux服务器上一些用到的东西</title>
