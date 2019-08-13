@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-08-11T12:09:18.913Z</updated>
+  <updated>2019-08-13T15:39:49.589Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>关于跨域</title>
+    <link href="http://yoursite.com/2019/08/13/kuayu/"/>
+    <id>http://yoursite.com/2019/08/13/kuayu/</id>
+    <published>2019-08-13T15:34:54.000Z</published>
+    <updated>2019-08-13T15:39:49.589Z</updated>
+    
+    <content type="html"><![CDATA[<p>vue 项目进行中，跨域大坑</p><h3 id="方法一-本地代理"><a href="#方法一-本地代理" class="headerlink" title="方法一 本地代理"></a>方法一 本地代理</h3><p>解决了开发环境跨域</p><h3 id="方法二-服务端加-header（）"><a href="#方法二-服务端加-header（）" class="headerlink" title="方法二 服务端加 header（）"></a>方法二 服务端加 header（）</h3><p>生产环境跨域可以解决</p><h3 id="待解决"><a href="#待解决" class="headerlink" title="待解决"></a>待解决</h3><p>生产环境非服务端方式</p><p><em>随后填充具体方法</em><br>2019-8-13 23:39:45</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;vue 项目进行中，跨域大坑&lt;/p&gt;
+&lt;h3 id=&quot;方法一-本地代理&quot;&gt;&lt;a href=&quot;#方法一-本地代理&quot; class=&quot;headerlink&quot; title=&quot;方法一 本地代理&quot;&gt;&lt;/a&gt;方法一 本地代理&lt;/h3&gt;&lt;p&gt;解决了开发环境跨域&lt;/p&gt;
+&lt;h3 id=&quot;方法
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>开始vue项目coding</title>
