@@ -231,6 +231,126 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/23/mongodb/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Eddie">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="仗键江湖">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/08/23/mongodb/" itemprop="url">MongoDB学习ing</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-08-23T23:22:31+08:00">
+                2019-08-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>nosql非关系型数据库MongoDB准备快速拿下<br>一切为了解决最实际的根本需求<br><a href="https://pull.xasmartliving.com/code/mongoShell/mongodb.md" target="_blank" rel="noopener">学习笔记</a> 在这里记录，速度更新ing</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/17/vuegogogo/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1368,162 +1488,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/03/auto-deploy/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Eddie">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="仗键江湖">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/08/03/auto-deploy/" itemprop="url">github 自动部署详细流程</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-08-03T00:12:30+08:00">
-                2019-08-03
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="github-自动部署详细流程"><a href="#github-自动部署详细流程" class="headerlink" title="github 自动部署详细流程"></a>github 自动部署详细流程</h2><p><em>奋战一段时间终于搞好了，记录下来方便后期使用</em></p>
-<h3 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h3><ul>
-<li><p>git</p>
-</li>
-<li><p>github</p>
-</li>
-<li><p>阿里云云服务器 ECS</p>
-</li>
-<li><p>宝塔 linux</p>
-</li>
-</ul>
-<h3 id="实现过程"><a href="#实现过程" class="headerlink" title="实现过程"></a>实现过程</h3><ol>
-<li><p>github 建仓库</p>
-</li>
-<li><p>git clone 仓库到本地</p>
-</li>
-<li><p>添加 webhook.php 文件到本地卡并推送到 github 仓库,github 设置 webhook</p>
-<p>webhook.php 代码：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">// GitHub Webhook Secret.</span></span><br><span class="line"><span class="comment">// GitHub项目 Settings/Webhooks 中的 Secret</span></span><br><span class="line">$secret = <span class="string">"fujingqi"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Path to your respostory on your server.</span></span><br><span class="line"><span class="comment">// e.g. "/var/www/respostory"</span></span><br><span class="line"><span class="comment">// 项目地址</span></span><br><span class="line">$path = <span class="string">"/www/wwwroot/auto.xasmartliving.com"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Headers deliveried from GitHub</span></span><br><span class="line">$signature = $_SERVER[<span class="string">'HTTP_X_HUB_SIGNATURE'</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> ($signature) &#123;</span><br><span class="line">  $hash = <span class="string">"sha1="</span>.hash_hmac(<span class="string">'sha1'</span>, file_get_contents(<span class="string">"php://input"</span>), $secret);</span><br><span class="line">  <span class="keyword">if</span> (strcmp($signature, $hash) == <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">echo</span> shell_exec(<span class="string">"cd &#123;$path&#125; &amp;&amp; /usr/bin/git reset --hard origin/master &amp;&amp; /usr/bin/git clean -f &amp;&amp; /usr/bin/git pull 2&gt;&amp;1"</span>);</span><br><span class="line">    <span class="keyword">exit</span>();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">http_response_code(<span class="number">404</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<p>4) 创建站点</p>
-<p>   开启<code>shell_exec</code></p>
-<ol start="5">
-<li><p>登录服务器使用 https 协议 clone 项目代码</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ssh root@auto.xxxx.com -p 22</span><br><span class="line"></span><br><span class="line">git <span class="built_in">clone</span> https://github.com/fujingqi2018/auto.git auto.xxxx.com</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<p>6) 修改权限</p>
-   <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chown -R www .</span><br><span class="line">chmod -R g+s .</span><br></pre></td></tr></table></figure>
-
-<h3 id="接下来就可以愉快的玩耍了"><a href="#接下来就可以愉快的玩耍了" class="headerlink" title="接下来就可以愉快的玩耍了"></a>接下来就可以愉快的玩耍了</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit -m <span class="string">"xxx"</span></span><br><span class="line">git push</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h3 id="感谢"><a href="#感谢" class="headerlink" title="感谢"></a>感谢</h3><p>向军大叔的视频教程及<a href="http://houdunren.gitee.io/note/git/git.html#%E5%AE%89%E8%A3%85" target="_blank" rel="noopener">文档教程</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1574,7 +1538,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">16</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-08-19T12:45:27.335Z</updated>
+  <updated>2019-08-23T15:25:54.984Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>MongoDB学习ing</title>
+    <link href="http://yoursite.com/2019/08/23/mongodb/"/>
+    <id>http://yoursite.com/2019/08/23/mongodb/</id>
+    <published>2019-08-23T15:22:31.000Z</published>
+    <updated>2019-08-23T15:25:54.984Z</updated>
+    
+    <content type="html"><![CDATA[<p>nosql非关系型数据库MongoDB准备快速拿下<br>一切为了解决最实际的根本需求<br><a href="https://pull.xasmartliving.com/code/mongoShell/mongodb.md" target="_blank" rel="noopener">学习笔记</a> 在这里记录，速度更新ing</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;nosql非关系型数据库MongoDB准备快速拿下&lt;br&gt;一切为了解决最实际的根本需求&lt;br&gt;&lt;a href=&quot;https://pull.xasmartliving.com/code/mongoShell/mongodb.md&quot; target=&quot;_blank&quot; rel=&quot;n
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>vue的大门已经敞开</title>
