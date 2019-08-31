@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-08-26T14:51:02.926Z</updated>
+  <updated>2019-08-31T15:07:57.848Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>CSS也撸一发吧</title>
+    <link href="http://yoursite.com/2019/08/31/cssGo/"/>
+    <id>http://yoursite.com/2019/08/31/cssGo/</id>
+    <published>2019-08-31T15:06:16.000Z</published>
+    <updated>2019-08-31T15:07:57.848Z</updated>
+    
+    <content type="html"><![CDATA[<p><a href="https://pull.xasmartliving.com/code/cssLearn/" target="_blank" rel="noopener">笔记</a>开始记录<br>稍微打一些基础的好，不然还真是写不出来东西。。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;&lt;a href=&quot;https://pull.xasmartliving.com/code/cssLearn/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;笔记&lt;/a&gt;开始记录&lt;br&gt;稍微打一些基础的好，不然还真是写不出来东西。。&lt;/p&gt;
+
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>开撸ES6</title>
